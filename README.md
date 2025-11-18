@@ -15,10 +15,9 @@ To write a PYTHON program for socket for HTTP for web page upload and download
 <BR>
 6.Stop the program
 <BR>
-## Program
+## Program 
 ```
 import socket
-
 def send_request(host, port, request):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
@@ -38,7 +37,7 @@ def upload_file(host, port, filename):
 def download_file(host, port, filename):
     request = f"GET /{filename} HTTP/1.1\r\nHost: {host}\r\n\r\n"
     response = send_request(host, port, request)
-
+    # Assuming the response contains the file content after the headers
     file_content = response.split('\r\n\r\n', 1)[1]
     with open(filename, 'wb') as file:
         file.write(file_content.encode())
@@ -47,15 +46,16 @@ if __name__ == "__main__":
     host = 'example.com'
     port = 80
 
-    upload_response = upload_file(host, port, 'example.txt')
+    # Upload file
+    upload_response = upload_file(host, port, r"C:\Users\admin\Downloads\cn\exp5\example.txt")
     print("Upload response:", upload_response)
 
+    # Download file
     download_file(host, port, 'example.txt')
     print("File downloaded successfully.")
 ```
 ## OUTPUT
-
-<img width="797" height="447" alt="image" src="https://github.com/user-attachments/assets/a1516d2d-0345-4374-bef7-63362bb4f3d5" />
+<img width="1920" height="1140" alt="514280816-2ce74772-35a0-4361-a37f-7dd1275b4174" src="https://github.com/user-attachments/assets/79c4b186-a94d-4650-8805-9ab491249d54" />
 
 ## Result
 Thus the socket for HTTP for web page upload and download created and Executed
